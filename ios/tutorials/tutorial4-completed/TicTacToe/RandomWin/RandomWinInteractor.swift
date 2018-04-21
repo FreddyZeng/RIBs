@@ -22,7 +22,9 @@ public protocol RandomWinRouting: ViewableRouting {
 }
 
 protocol RandomWinPresentable: Presentable {
+    // UI可以反馈事件给逻辑
     var listener: RandomWinPresentableListener? { get set }
+    // 逻辑主动给UI数据进行显示，并且可以拥有异步回调
     func announce(winner: PlayerType, withCompletionHandler handler: @escaping () -> ())
 }
 
@@ -31,9 +33,10 @@ public protocol RandomWinListener: class {
 }
 
 final class RandomWinInteractor: PresentableInteractor<RandomWinPresentable>, RandomWinInteractable, RandomWinPresentableListener {
-
+    // 当逻辑驱动，需要切换整个页面的UI时，才会启动路由进行切换
     weak var router: RandomWinRouting?
-
+    
+    // 子模块的逻辑事件，告诉父模块
     weak var listener: RandomWinListener?
 
     init(presenter: RandomWinPresentable,

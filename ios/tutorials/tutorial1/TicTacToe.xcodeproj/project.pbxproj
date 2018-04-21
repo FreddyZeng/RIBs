@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		7EDD59501FA13579005EC8B2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD594F1FA13579005EC8B2 /* Default-568h@2x.png */; };
 		AEFA38604D7D1E4A08E9A7FA /* Pods_TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99EABB5C8D25341027C05C5 /* Pods_TicTacToe.framework */; };
+		C28575D3207E1272005E875E /* TestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28575CF207E1272005E875E /* TestRouter.swift */; };
+		C28575D4207E1272005E875E /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28575D0207E1272005E875E /* TestViewController.swift */; };
+		C28575D5207E1272005E875E /* TestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28575D1207E1272005E875E /* TestBuilder.swift */; };
+		C28575D6207E1272005E875E /* TestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28575D2207E1272005E875E /* TestInteractor.swift */; };
 		E9C3E1EA1FA1BD0400781364 /* DELETE_ME.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C3E1E91FA1BD0400781364 /* DELETE_ME.swift */; };
 		E9CB1D521F97303800D84847 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB1D351F972FD500D84847 /* AppDelegate.swift */; };
 		E9CB1D531F97305A00D84847 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB1D341F972FD500D84847 /* AppComponent.swift */; };
@@ -24,6 +28,10 @@
 		833B15CABE3CBE09720A0409 /* Pods-TicTacToe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TicTacToe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TicTacToe/Pods-TicTacToe.debug.xcconfig"; sourceTree = "<group>"; };
 		A791EBDAD202886E66137B9C /* Pods-TicTacToe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TicTacToe.release.xcconfig"; path = "Pods/Target Support Files/Pods-TicTacToe/Pods-TicTacToe.release.xcconfig"; sourceTree = "<group>"; };
 		B99EABB5C8D25341027C05C5 /* Pods_TicTacToe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TicTacToe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C28575CF207E1272005E875E /* TestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRouter.swift; sourceTree = "<group>"; };
+		C28575D0207E1272005E875E /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		C28575D1207E1272005E875E /* TestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBuilder.swift; sourceTree = "<group>"; };
+		C28575D2207E1272005E875E /* TestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInteractor.swift; sourceTree = "<group>"; };
 		E9894B4A1F972CC500688FCB /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9894B591F972CC500688FCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9C3E1E91FA1BD0400781364 /* DELETE_ME.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DELETE_ME.swift; sourceTree = "<group>"; };
@@ -65,6 +73,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C28575CE207E1253005E875E /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				C28575CF207E1272005E875E /* TestRouter.swift */,
+				C28575D0207E1272005E875E /* TestViewController.swift */,
+				C28575D1207E1272005E875E /* TestBuilder.swift */,
+				C28575D2207E1272005E875E /* TestInteractor.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		E9894B411F972CC500688FCB = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +105,7 @@
 		E9894B4C1F972CC500688FCB /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
+				C28575CE207E1253005E875E /* Test */,
 				7EDD59511FA135E9005EC8B2 /* Resources */,
 				E9CB1D331F972FD500D84847 /* AppStart */,
 				E9CB1D421F972FE400D84847 /* LoggedOut */,
@@ -144,7 +164,6 @@
 				E9894B471F972CC500688FCB /* Frameworks */,
 				E9894B481F972CC500688FCB /* Resources */,
 				01C0219C62DB08840E36B78D /* [CP] Embed Pods Frameworks */,
-				D0E4ECFC9A8F9EAE85892FE7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -243,21 +262,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D0E4ECFC9A8F9EAE85892FE7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TicTacToe/Pods-TicTacToe-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -265,14 +269,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C28575D4207E1272005E875E /* TestViewController.swift in Sources */,
 				E9CB1D521F97303800D84847 /* AppDelegate.swift in Sources */,
 				E9CB1D641F9730EF00D84847 /* RootInteractor.swift in Sources */,
 				E9CB1D631F9730EF00D84847 /* RootComponent+LoggedOut.swift in Sources */,
 				E9CB1D611F9730EF00D84847 /* RootBuilder.swift in Sources */,
 				E9CB1D531F97305A00D84847 /* AppComponent.swift in Sources */,
+				C28575D3207E1272005E875E /* TestRouter.swift in Sources */,
 				E9CB1D651F9730EF00D84847 /* RootRouter.swift in Sources */,
 				E9CB1D661F9730EF00D84847 /* RootViewController.swift in Sources */,
 				E9C3E1EA1FA1BD0400781364 /* DELETE_ME.swift in Sources */,
+				C28575D6207E1272005E875E /* TestInteractor.swift in Sources */,
+				C28575D5207E1272005E875E /* TestBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,9 +401,10 @@
 			baseConfigurationReference = 833B15CABE3CBE09720A0409 /* Pods-TicTacToe.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RNL7SY23B3;
 				INFOPLIST_FILE = TicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ubercab.TicTacToe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubercab.TicTacToe1111;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -407,9 +416,10 @@
 			baseConfigurationReference = A791EBDAD202886E66137B9C /* Pods-TicTacToe.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RNL7SY23B3;
 				INFOPLIST_FILE = TicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ubercab.TicTacToe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubercab.TicTacToe1111;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
